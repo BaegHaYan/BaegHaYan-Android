@@ -1,4 +1,4 @@
-package com.pss.quick_setup
+package com.pss.baeghayan_android
 
 import org.junit.Test
 
