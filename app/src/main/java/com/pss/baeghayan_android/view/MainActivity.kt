@@ -17,6 +17,7 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
 import com.pss.baeghayan_android.R
 import com.pss.baeghayan_android.base.BaseActivity
 import com.pss.baeghayan_android.databinding.ActivityMainBinding
@@ -40,23 +41,28 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         checkPermissions()
         initVoiceListener()
         initVoiceIntent()
+        initGifImg()
         outputDirectory = getOutputDirectory()
         cameraExecutor = Executors.newSingleThreadExecutor()
     }
 
-    fun clickStartVoiceBtn(view : View){
+    private fun initGifImg() {
+        Glide.with(this).load(R.raw.sample).into(binding.baegHaYanGifImg)
+    }
+
+    fun clickStartVoiceBtn(view: View) {
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this)
         speechRecognizer.setRecognitionListener(recognitionListener)
         speechRecognizer.startListening(intent)
     }
 
-    private fun initVoiceIntent(){
+    private fun initVoiceIntent() {
         var intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
         intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, packageName)
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "ko-KR")
     }
-    
-    private fun checkPermissions(){
+
+    private fun checkPermissions() {
         if (allPermissionsGranted()) {
             startCamera()
         } else {
@@ -106,9 +112,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             try {
                 cameraProvider.unbindAll()
                 cameraProvider.bindToLifecycle(
-                    this, cameraSelector, preview)
+                    this, cameraSelector, preview
+                )
 
-            } catch(exc: Exception) {
+            } catch (exc: Exception) {
                 Log.e("로그", "Use case binding failed", exc)
             }
 
