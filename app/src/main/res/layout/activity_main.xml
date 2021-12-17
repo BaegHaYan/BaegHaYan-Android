@@ -50,6 +50,16 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvResult"
             app:layout_constraintVertical_bias="0.1" />
+
+        <ImageView
+            android:id="@+id/hang_up"
+            android:layout_width="@dimen/call_btn_size"
+            android:layout_height="@dimen/call_btn_size"
+            android:src="@drawable/call"
+            android:layout_marginBottom="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

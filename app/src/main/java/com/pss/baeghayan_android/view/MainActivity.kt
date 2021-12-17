@@ -3,6 +3,7 @@ package com.pss.baeghayan_android.view
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.speech.RecognitionListener
@@ -42,13 +43,16 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         initVoiceListener()
         initVoiceIntent()
         initGifImg()
+      //  initColor()
         outputDirectory = getOutputDirectory()
         cameraExecutor = Executors.newSingleThreadExecutor()
     }
 
-    private fun initGifImg() {
-        Glide.with(this).load(R.raw.sample).into(binding.baegHaYanGifImg)
-    }
+/*    private fun initColor() {
+        binding.hangUp.setColorFilter(Color.parseColor("#FF7575"))
+    }*/
+
+    private fun initGifImg() = Glide.with(this).load(R.raw.sample2).into(binding.baegHaYanGifImg)
 
     fun clickStartVoiceBtn(view: View) {
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this)
